@@ -2,63 +2,59 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>Developing PIC24 Projects using the Command Line</title>
-        <link rel="stylesheet" href="./theme/css/main.css" />
+        <title>My Embedded Electronics Blog - command-line</title>
+        <link rel="stylesheet" href="https://sdaglish.github.io/theme/css/main.css" />
+        <link href="https://sdaglish.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Embedded Electronics Blog Atom Feed" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="./">My Embedded Electronics Blog</a></h1>
+                <h1><a href="https://sdaglish.github.io/">My Embedded Electronics Blog</a></h1>
                 <nav><ul>
-                    <li class="active"><a href="./category/misc.html">misc</a></li>
+                    <li><a href="https://sdaglish.github.io/category/misc.html">misc</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="./developing_pic24_projects_using_the_command_line.html" rel="bookmark"
-           title="Permalink to Developing PIC24 Projects using the Command Line">Developing PIC24 Projects using the Command Line</a></h1>
-    </header>
 
-    <div class="entry-content">
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://sdaglish.github.io/developing_pic24_projects_using_the_command_line.html">Developing PIC24 Projects using the Command Line</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2020-02-19T00:00:00+00:00">
                 Published: Wed 19 February 2020
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="./author/steven-daglish.html">Steven Daglish</a>
+                By                         <a class="url fn" href="https://sdaglish.github.io/author/steven-daglish.html">Steven Daglish</a>
         </address>
-<p>In <a href="./category/misc.html">misc</a>.</p>
-<p>tags: <a href="./tag/pic.html">pic</a> <a href="./tag/pic24.html">pic24</a> <a href="./tag/command-line.html">command-line</a> </p>
-</footer><!-- /.post-info -->      <div id="table-of-contents">
+<p>In <a href="https://sdaglish.github.io/category/misc.html">misc</a>.</p>
+<p>tags: <a href="https://sdaglish.github.io/tag/pic.html">pic</a> <a href="https://sdaglish.github.io/tag/pic24.html">pic24</a> <a href="https://sdaglish.github.io/tag/command-line.html">command-line</a> </p>
+</footer><!-- /.post-info --><div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9df2f92">1. Introduction</a></li>
-<li><a href="#org4074140">2. Getting everything together</a>
+<li><a href="#orgcc134d5">1. Introduction</a></li>
+<li><a href="#orgdaa9f2a">2. Getting everything together</a>
 <ul>
-<li><a href="#orgcde694f">2.1. Path System Variables</a></li>
-<li><a href="#orge17643e">2.2. Installation</a></li>
+<li><a href="#org7051f7e">2.1. Path System Variables</a></li>
+<li><a href="#org990dc23">2.2. Installation</a></li>
 </ul>
 </li>
-<li><a href="#org8ddac14">3. Adding new files</a>
+<li><a href="#org76c7d3a">3. Adding new files</a>
 <ul>
-<li><a href="#org3b7e811">3.1. Adding files by MPLAB X IDE</a></li>
-<li><a href="#orgb3c47d6">3.2. Adding files without the IDE</a></li>
+<li><a href="#org235e980">3.1. Adding files by MPLAB X IDE</a></li>
+<li><a href="#org1178e69">3.2. Adding files without the IDE</a></li>
 </ul>
 </li>
-<li><a href="#org1a03450">4. Compiling the firmware</a></li>
-<li><a href="#org3dc1ece">5. Flashing the firmware</a></li>
-<li><a href="#org5d11f2e">6. Wrapping it up</a></li>
+<li><a href="#orgbd02123">4. Compiling the firmware</a></li>
+<li><a href="#orgf802480">5. Flashing the firmware</a></li>
+<li><a href="#orgbdbcb90">6. Wrapping it up</a></li>
 </ul>
 </div>
 </div>
 
 
-<div id="outline-container-org9df2f92" class="outline-2">
-<h2 id="org9df2f92"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-orgcc134d5" class="outline-2">
+<h2 id="orgcc134d5"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 In both my professional and private projects, I use Microchip's PIC microprocessors A LOT. In fact, at the time of writing, I have about 10 different projects on the go at the same time, all of which are using different PICs (mainly PIC16 and PIC24s).
@@ -120,16 +116,16 @@ A couple of things to note:
 </div>
 </div>
 
-<div id="outline-container-org4074140" class="outline-2">
-<h2 id="org4074140"><span class="section-number-2">2</span> Getting everything together</h2>
+<div id="outline-container-orgdaa9f2a" class="outline-2">
+<h2 id="orgdaa9f2a"><span class="section-number-2">2</span> Getting everything together</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 As mentioned above, I'm using Windows 10. I have the same setup working fine on Windows 7. I will probably do some testing on a Linux VM at some point. I have no means of testing things on a Mac machine (please let me know if you're a Mac user and have any experience with a similar setup as I'd be interested to know how things are different / similar).
 </p>
 </div>
 
-<div id="outline-container-orgcde694f" class="outline-3">
-<h3 id="orgcde694f"><span class="section-number-3">2.1</span> Path System Variables</h3>
+<div id="outline-container-org7051f7e" class="outline-3">
+<h3 id="org7051f7e"><span class="section-number-3">2.1</span> Path System Variables</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 The PATH system variable will need to be updated to include a couple of MPLAB files.
@@ -151,8 +147,8 @@ Of course, this will massively depend on your system setup.
 </div>
 </div>
 
-<div id="outline-container-orge17643e" class="outline-3">
-<h3 id="orge17643e"><span class="section-number-3">2.2</span> Installation</h3>
+<div id="outline-container-org990dc23" class="outline-3">
+<h3 id="org990dc23"><span class="section-number-3">2.2</span> Installation</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Despite trying to not use MPLAB, for this setup, you will need to install MPLAB X <a href="https://www.microchip.com/mplab/mplab-x-ide">here</a>. At the time of writing, the latest version is v5.30, but as we aren't using much of MPLAB, the instructions below should work on most versions (I'll update the instructions if I find anything breaks).
@@ -174,16 +170,16 @@ Once you're all set up, open up MPLAB X and create your project as you would for
 </div>
 
 
-<div id="outline-container-org8ddac14" class="outline-2">
-<h2 id="org8ddac14"><span class="section-number-2">3</span> Adding new files</h2>
+<div id="outline-container-org76c7d3a" class="outline-2">
+<h2 id="org76c7d3a"><span class="section-number-2">3</span> Adding new files</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 When adding new files to an PIC project, you can either use the MPLAB IDE or you can add them manually by editing nbproject/configurations.xml . Both work well, depending on your needs.
 </p>
 </div>
 
-<div id="outline-container-org3b7e811" class="outline-3">
-<h3 id="org3b7e811"><span class="section-number-3">3.1</span> Adding files by MPLAB X IDE</h3>
+<div id="outline-container-org235e980" class="outline-3">
+<h3 id="org235e980"><span class="section-number-3">3.1</span> Adding files by MPLAB X IDE</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 When setting up a new project with MPLAB, I will often use the IDE to create the main.c file. The reasons I do this are:
@@ -203,8 +199,8 @@ After I've done the above, I will often close the IDE and start working on the c
 </div>
 </div>
 
-<div id="outline-container-orgb3c47d6" class="outline-3">
-<h3 id="orgb3c47d6"><span class="section-number-3">3.2</span> Adding files without the IDE</h3>
+<div id="outline-container-org1178e69" class="outline-3">
+<h3 id="org1178e69"><span class="section-number-3">3.2</span> Adding files without the IDE</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 It is possible to add files to the project without using the IDE. All the information we need is contained with the file nbproject\configurations.xml
@@ -284,8 +280,8 @@ If the generator was successful, you can then call <code>make</code> in the proj
 </div>
 
 
-<div id="outline-container-org1a03450" class="outline-2">
-<h2 id="org1a03450"><span class="section-number-2">4</span> Compiling the firmware</h2>
+<div id="outline-container-orgbd02123" class="outline-2">
+<h2 id="orgbd02123"><span class="section-number-2">4</span> Compiling the firmware</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Once you have the files added to your project and the new Makefile, compiling the software is pretty simple by typing <code>make</code> from within the project home folder. 
@@ -301,8 +297,8 @@ Typing in <code>make</code> and pressing return, you should have the same output
 </div>
 </div>
 
-<div id="outline-container-org3dc1ece" class="outline-2">
-<h2 id="org3dc1ece"><span class="section-number-2">5</span> Flashing the firmware</h2>
+<div id="outline-container-orgf802480" class="outline-2">
+<h2 id="orgf802480"><span class="section-number-2">5</span> Flashing the firmware</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 This one is a bit more difficult, as it depends on what you're using to flash the device, and what device you are flashing.
@@ -349,19 +345,16 @@ As I am very likely to make a mistake with the above command line, I'll normally
 </div>
 </div>
 
-<div id="outline-container-org5d11f2e" class="outline-2">
-<h2 id="org5d11f2e"><span class="section-number-2">6</span> Wrapping it up</h2>
+<div id="outline-container-orgbdbcb90" class="outline-2">
+<h2 id="orgbdbcb90"><span class="section-number-2">6</span> Wrapping it up</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Following the above should give you a minimum setup needed to develop PIC24 devices using the command line. I use this setup daily, but with a few additions for unit testing and for my Vim interaction's (both of which I'll discuss another time).
 </p>
 </div>
 </div>
-
-    </div><!-- /.entry-content -->
-
-  </article>
-</section>
+                </article>
+            </aside><!-- /#featured -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
@@ -375,6 +368,7 @@ Following the above should give you a minimum setup needed to develop PIC24 devi
                 <div class="social">
                         <h2>social</h2>
                         <ul>
+                            <li><a href="https://sdaglish.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
 
                             <li><a href="#">You can add links in your config file</a></li>
                             <li><a href="#">Another social link</a></li>

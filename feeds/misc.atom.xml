@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My Embedded Electronics Blog - misc</title><link href="https://sdaglish.github.io/" rel="alternate"></link><link href="https://sdaglish.github.io/feeds/misc.atom.xml" rel="self"></link><id>https://sdaglish.github.io/</id><updated>2020-02-19T00:00:00+00:00</updated><entry><title>Developing PIC24 Projects using the Command Line</title><link href="https://sdaglish.github.io/developing_pic24_projects_using_the_command_line.html" rel="alternate"></link><published>2020-02-19T00:00:00+00:00</published><updated>2020-02-19T00:00:00+00:00</updated><author><name>Steven Daglish</name></author><id>tag:sdaglish.github.io,2020-02-19:/developing_pic24_projects_using_the_command_line.html</id><summary type="html">How to develop PIC24 projects using the command line as much as possible</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orgcc134d5"&gt;1. Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgdaa9f2a"&gt;2. Getting everything together&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org7051f7e"&gt;2.1. Path System Variables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org990dc23"&gt;2.2. Installation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org76c7d3a"&gt;3. Adding new files&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org235e980"&gt;3.1. Adding files by MPLAB X IDE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org1178e69"&gt;3.2. Adding files without the IDE&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgbd02123"&gt;4. Compiling the firmware&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgf802480"&gt;5. Flashing the firmware&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgbdbcb90"&gt;6. Wrapping it up&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-orgcc134d5" class="outline-2"&gt;
+&lt;h2 id="orgcc134d5"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+In both my professional and private projects, I use Microchip's PIC microprocessors A LOT. In fact, at the time of writing, I have about 10 different projects on the go at the same time, all of which are using different PICs (mainly PIC16 and PIC24s).
+&lt;/p&gt;
+
+&lt;p&gt;
+The easiest way to get started developing PIC programs if by using Microchip's IDE: MPLAB X (v5.30 at the time of writing). This allows you to create new projects, add files, compile, and flash the firmware with relative ease. For the most part, it does work pretty well, and for a beginner it's probably the best way to get started with PIC development (and it was how I also got started).
+&lt;/p&gt;
+
+&lt;p&gt;
+However, it's not perfect, and has a number of issues that were starting to annoy me a bit (maybe there were ways around them, but I didn't find anything, and by that point I was starting to look into different editors anyway). Some of the main issues I was having were:
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Incorrect red underlining, saying functions that did not exist (when I knew they did)&lt;/li&gt;
+&lt;li&gt;Not being able to flash the code without the code first being rebuilt (even when no changes were made to the software).&lt;/li&gt;
+&lt;li&gt;The auto-complete would be a bit odd sometimes, where sometimes it just wouldn't work.&lt;/li&gt;
+&lt;li&gt;Inability to choose a different text editor (I'm a fan of Vim, and missed a lot of the keybindings as well as the modal way of working).&lt;/li&gt;
+&lt;li&gt;Not being able to flash without using the mouse. This one annoys me a lot, and it would be great to find out there is a way get around this one).&lt;/li&gt;
+&lt;li&gt;A few other things that I won't get into here.&lt;/li&gt;
+&lt;li&gt;The built in version control didn't seem to work that well, but that could be that I was trying to use it before I was profesiont with git (I now prefer to use the command line for version control anyway).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+A don't wish to slag off the IDE as it is perfectly usable, and I know a number of people who use it professionally without any issues. However, I needed to look into alternatives that would give me the ability to do the following:
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Use the command line when I wanted to use it.&lt;/li&gt;
+&lt;li&gt;Allow me to use any editor I wanted (not including editing in whatever, and then compiling and flashing in MPLAB).
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Personally, I use Vim, but I have used the setup below with vs-code as well.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Allow me to compile and flash using either the command line or directly in my editor IDE of choice&lt;/li&gt;
+&lt;li&gt;Debug without using MPLAB (still working on a solution to that one&amp;#x2026;).&lt;/li&gt;
+&lt;li&gt;Include unit testing.
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;This could be through the command line, in which case, I could still use MPLAB for the main project work, but I'm looking at something a bit more integrated.&lt;/li&gt;
+&lt;li&gt;I'm using Ceedling to unit test my projects, but I'll discuss that in another blog.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Add auto-complete and linting that work better than what I was getting with MPLAB.
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;This is very editor / IDE specific. Since I'm using Vim, I find that YouCompleteMe works very well, even in this embedded setup, and I'll discuss that in another blog.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+That's quite a lot, but for now, I'm going to concentrate on getting everything working on the command line. I'll worry about the editor / IDE integration at another point.
+&lt;/p&gt;
+
+&lt;p&gt;
+A couple of things to note:
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;I'm using Windows 10 with Cmder&lt;/li&gt;
+&lt;li&gt;You still need to have MPLAB X installed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgdaa9f2a" class="outline-2"&gt;
+&lt;h2 id="orgdaa9f2a"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Getting everything together&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;p&gt;
+As mentioned above, I'm using Windows 10. I have the same setup working fine on Windows 7. I will probably do some testing on a Linux VM at some point. I have no means of testing things on a Mac machine (please let me know if you're a Mac user and have any experience with a similar setup as I'd be interested to know how things are different / similar).
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7051f7e" class="outline-3"&gt;
+&lt;h3 id="org7051f7e"&gt;&lt;span class="section-number-3"&gt;2.1&lt;/span&gt; Path System Variables&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-1"&gt;
+&lt;p&gt;
+The PATH system variable will need to be updated to include a couple of MPLAB files.
+&lt;/p&gt;
+
+&lt;p&gt;
+I will explain these a bit more when they are mentioned later or, but for now, the following are what I'm using:
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;code&gt;C:\Program Files (x86)\Microchip\MPLABX\v5.30\mplab_platform\bin&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;C:\Program Files (x86)\Microchip\xc16\v1.41\bin&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;C:\Program Files (x86)\Microchip\MPLABX\v5.20\mplab_platform\mplab_ipe&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Of course, this will massively depend on your system setup.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org990dc23" class="outline-3"&gt;
+&lt;h3 id="org990dc23"&gt;&lt;span class="section-number-3"&gt;2.2&lt;/span&gt; Installation&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-2"&gt;
+&lt;p&gt;
+Despite trying to not use MPLAB, for this setup, you will need to install MPLAB X &lt;a href="https://www.microchip.com/mplab/mplab-x-ide"&gt;here&lt;/a&gt;. At the time of writing, the latest version is v5.30, but as we aren't using much of MPLAB, the instructions below should work on most versions (I'll update the instructions if I find anything breaks).
+&lt;/p&gt;
+
+&lt;p&gt;
+The installation file will install both the IDE and the IPE. We won't be using the IPE, but for some, it might be of use.
+&lt;/p&gt;
+
+&lt;p&gt;
+If you're on Windows, I'd also advice installing Cmder. This is a terminal emulator for Windows that has a similar feel / look to bash, and has some interesting features for git use. Cmder can be found at &lt;a href="https://cmder.net"&gt;https://cmder.net&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Once you're all set up, open up MPLAB X and create your project as you would for any other project.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-org76c7d3a" class="outline-2"&gt;
+&lt;h2 id="org76c7d3a"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; Adding new files&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-3"&gt;
+&lt;p&gt;
+When adding new files to an PIC project, you can either use the MPLAB IDE or you can add them manually by editing nbproject/configurations.xml . Both work well, depending on your needs.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org235e980" class="outline-3"&gt;
+&lt;h3 id="org235e980"&gt;&lt;span class="section-number-3"&gt;3.1&lt;/span&gt; Adding files by MPLAB X IDE&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-1"&gt;
+&lt;p&gt;
+When setting up a new project with MPLAB, I will often use the IDE to create the main.c file. The reasons I do this are:
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;I already have the IDE open, so it's quick and simple to do.&lt;/li&gt;
+&lt;li&gt;I don't have to use any command line tools at this early stage to update the makefile and other config files (which you will need to do when using the command line / configurations.xml edits)&lt;/li&gt;
+&lt;li&gt;I can compile the firmware in the IDE and make sure everything is setup as expected&lt;/li&gt;
+&lt;li&gt;I can use the IDE to setup a couple of other things such as the configuration bits&lt;/li&gt;
+&lt;li&gt;If I have the target hardware at hand, I can flash using the IDE. This way, I know that any flashing issues later are related to my command-line setup, and not a hardware issue.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+After I've done the above, I will often close the IDE and start working on the command line. However, if you're adding a lot of files now, it might be easier to do this now while the IDE is open as it will probably be easier than adding them all to the configurations.xml file, but that's a personal preference.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org1178e69" class="outline-3"&gt;
+&lt;h3 id="org1178e69"&gt;&lt;span class="section-number-3"&gt;3.2&lt;/span&gt; Adding files without the IDE&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-2"&gt;
+&lt;p&gt;
+It is possible to add files to the project without using the IDE. All the information we need is contained with the file nbproject\configurations.xml
+&lt;/p&gt;
+
+&lt;p&gt;
+Open up the file and have a look through it. Be careful though, because if you edit it incorrectly, you can mess up your project and it can be very difficult to fix (unless you're using some version of version control, in which case edit away).
+&lt;/p&gt;
+
+&lt;p&gt;
+The bit that we are interested is very close to the top under the line 
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;code&gt;&amp;lt;logicalFolder name="root" displayName="root" projectFiles="true"&amp;gt;&lt;/code&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+This tag contains all the information used by the Makefile generator, and by MPLAB to compile the project. You can add folders, sub-folders, and files as you see fit.
+&lt;/p&gt;
+
+&lt;p&gt;
+For example, lets say we want to add a module called &lt;code&gt;port_a_driver&lt;/code&gt;, and have the &lt;code&gt;.c&lt;/code&gt; in folder &lt;code&gt;src&lt;/code&gt; and the &lt;code&gt;.h&lt;/code&gt; file in folder &lt;code&gt;inc&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Assuming these folder and files already exist (manually create them if you haven't), the &lt;code&gt;logicalFolder&lt;/code&gt; tag is updated as shown below:
+&lt;/p&gt;
+
+&lt;div class="org-src-container"&gt;
+&lt;pre class="src src-xml"&gt;&lt;span class="linenr"&gt; 1: &lt;/span&gt;&amp;lt;&lt;span style="font-weight: bold;"&gt;logicalFolder&lt;/span&gt; &lt;span style="font-weight: bold; font-style: italic;"&gt;name&lt;/span&gt;=&lt;span style="font-style: italic;"&gt;"root"&lt;/span&gt; &lt;span style="font-weight: bold; font-style: italic;"&gt;displayName&lt;/span&gt;=&lt;span style="font-style: italic;"&gt;"root"&lt;/span&gt; &lt;span style="font-weight: bold; font-style: italic;"&gt;projectFiles&lt;/span&gt;=&lt;span style="font-style: italic;"&gt;"true"&lt;/span&gt;&amp;gt;
+&lt;span class="linenr"&gt; 2: &lt;/span&gt;  &amp;lt;&lt;span style="font-weight: bold;"&gt;logicalFolder&lt;/span&gt; &lt;span style="font-weight: bold; font-style: italic;"&gt;name&lt;/span&gt;=&lt;span style="font-style: italic;"&gt;"HeaderFiles"&lt;/span&gt;
+&lt;span class="linenr"&gt; 3: &lt;/span&gt;                 &lt;span style="font-weight: bold; font-style: italic;"&gt;displayName&lt;/span&gt;=&lt;span style="font-style: italic;"&gt;"Header Files"&lt;/span&gt;
+&lt;span class="linenr"&gt; 4: &lt;/span&gt;                 &lt;span style="font-weight: bold; font-style: italic;"&gt;projectFiles&lt;/span&gt;=&lt;span style="font-style: italic;"&gt;"true"&lt;/span&gt;&amp;gt;
+&lt;span class="linenr"&gt; 5: &lt;/span&gt;     &amp;lt;&lt;span style="font-weight: bold;"&gt;itemPath&lt;/span&gt;&amp;gt;inc/port_a_driver.h&amp;lt;/&lt;span style="font-weight: bold;"&gt;itemPath&lt;/span&gt;&amp;gt;   
+&lt;span class="linenr"&gt; 6: &lt;/span&gt;  &amp;lt;/&lt;span style="font-weight: bold;"&gt;logicalFolder&lt;/span&gt;&amp;gt;
+&lt;span class="linenr"&gt; 7: &lt;/span&gt;  &amp;lt;&lt;span style="font-weight: bold;"&gt;logicalFolder&lt;/span&gt; &lt;span style="font-weight: bold; font-style: italic;"&gt;name&lt;/span&gt;=&lt;span style="font-style: italic;"&gt;"LinkerScript"&lt;/span&gt;
+&lt;span class="linenr"&gt; 8: &lt;/span&gt;                 &lt;span style="font-weight: bold; font-style: italic;"&gt;displayName&lt;/span&gt;=&lt;span style="font-style: italic;"&gt;"Linker Files"&lt;/span&gt;
+&lt;span class="linenr"&gt; 9: &lt;/span&gt;                 &lt;span style="font-weight: bold; font-style: italic;"&gt;projectFiles&lt;/span&gt;=&lt;span style="font-style: italic;"&gt;"true"&lt;/span&gt;&amp;gt;
+&lt;span class="linenr"&gt;10: &lt;/span&gt;  &amp;lt;/&lt;span style="font-weight: bold;"&gt;logicalFolder&lt;/span&gt;&amp;gt;
+&lt;span class="linenr"&gt;11: &lt;/span&gt;  &amp;lt;&lt;span style="font-weight: bold;"&gt;logicalFolder&lt;/span&gt; &lt;span style="font-weight: bold; font-style: italic;"&gt;name&lt;/span&gt;=&lt;span style="font-style: italic;"&gt;"SourceFiles"&lt;/span&gt;
+&lt;span class="linenr"&gt;12: &lt;/span&gt;                 &lt;span style="font-weight: bold; font-style: italic;"&gt;displayName&lt;/span&gt;=&lt;span style="font-style: italic;"&gt;"Source Files"&lt;/span&gt;
+&lt;span class="linenr"&gt;13: &lt;/span&gt;                 &lt;span style="font-weight: bold; font-style: italic;"&gt;projectFiles&lt;/span&gt;=&lt;span style="font-style: italic;"&gt;"true"&lt;/span&gt;&amp;gt;
+&lt;span class="linenr"&gt;14: &lt;/span&gt;     &amp;lt;&lt;span style="font-weight: bold;"&gt;itemPath&lt;/span&gt;&amp;gt;src/port_a_driver.c&amp;lt;/&lt;span style="font-weight: bold;"&gt;itemPath&lt;/span&gt;&amp;gt;
+&lt;span class="linenr"&gt;15: &lt;/span&gt;  &amp;lt;/&lt;span style="font-weight: bold;"&gt;logicalFolder&lt;/span&gt;&amp;gt;
+&lt;span class="linenr"&gt;16: &lt;/span&gt;  &amp;lt;&lt;span style="font-weight: bold;"&gt;logicalFolder&lt;/span&gt; &lt;span style="font-weight: bold; font-style: italic;"&gt;name&lt;/span&gt;=&lt;span style="font-style: italic;"&gt;"ExternalFiles"&lt;/span&gt;
+&lt;span class="linenr"&gt;17: &lt;/span&gt;                 &lt;span style="font-weight: bold; font-style: italic;"&gt;displayName&lt;/span&gt;=&lt;span style="font-style: italic;"&gt;"Important Files"&lt;/span&gt;
+&lt;span class="linenr"&gt;18: &lt;/span&gt;                 &lt;span style="font-weight: bold; font-style: italic;"&gt;projectFiles&lt;/span&gt;=&lt;span style="font-style: italic;"&gt;"false"&lt;/span&gt;&amp;gt;
+&lt;span class="linenr"&gt;19: &lt;/span&gt;     &amp;lt;&lt;span style="font-weight: bold;"&gt;itemPath&lt;/span&gt;&amp;gt;Makefile&amp;lt;/&lt;span style="font-weight: bold;"&gt;itemPath&lt;/span&gt;&amp;gt;
+&lt;span class="linenr"&gt;20: &lt;/span&gt;  &amp;lt;/&lt;span style="font-weight: bold;"&gt;logicalFolder&lt;/span&gt;&amp;gt;
+&lt;span class="linenr"&gt;21: &lt;/span&gt;  &amp;lt;&lt;span style="font-weight: bold;"&gt;itemPath&lt;/span&gt;&amp;gt;main.c&amp;lt;/&lt;span style="font-weight: bold;"&gt;itemPath&lt;/span&gt;&amp;gt;
+&lt;span class="linenr"&gt;22: &lt;/span&gt;&amp;lt;/&lt;span style="font-weight: bold;"&gt;logicalFolder&lt;/span&gt;&amp;gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+The main bits of information here are in lines 5 and 14. Here is where we are telling the config there the files are in the project folder, and where they will show up in MPLAB. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Next you need to call &lt;code&gt;prjMakefilesGenerator.bat .&lt;/code&gt; in the project's root folder. This will use the edited config file above and produce a new Makefile that contains references to the above two files.
+&lt;/p&gt;
+
+&lt;p&gt;
+For the above to work you will need to add the folder containing the above to your &lt;code&gt;PATH&lt;/code&gt;. For me this was at &lt;code&gt;C:\Program Files (x86)\Microchip\MPLABX\v5.30\mplab_platform\bin&lt;/code&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+If everything went well, then the generator will finish quietly with no output (I even found that adding the &lt;code&gt;-v&lt;/code&gt; didn't show anything).
+&lt;/p&gt;
+
+&lt;p&gt;
+If the generator was successful, you can then call &lt;code&gt;make&lt;/code&gt; in the project's root folder and the project will compile. The output will be exactly the same as if you were compiling in MPLAB, except that you won't have the pretty colours to help show important information. The information will still be there, but you'll have to pick it out a bit more. That is unless your editor / IDE is setup to use the complier's output (which I won't go into here, but I do have something setup in Vim).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-orgbd02123" class="outline-2"&gt;
+&lt;h2 id="orgbd02123"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; Compiling the firmware&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-4"&gt;
+&lt;p&gt;
+Once you have the files added to your project and the new Makefile, compiling the software is pretty simple by typing &lt;code&gt;make&lt;/code&gt; from within the project home folder. 
+&lt;/p&gt;
+
+&lt;p&gt;
+However, to get this to work, you need to add the location of the xc16 bin folder to your PATH, which on my machine is &lt;code&gt;C:\Program Files (x86)\Microchip\xc16\v1.41\bin&lt;/code&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+Typing in &lt;code&gt;make&lt;/code&gt; and pressing return, you should have the same output that you get when you're compiling in MPLAB. This will include any warning / error messages, confirmation that the compile was successful (or not), and the amount of program and data space used up.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgf802480" class="outline-2"&gt;
+&lt;h2 id="orgf802480"&gt;&lt;span class="section-number-2"&gt;5&lt;/span&gt; Flashing the firmware&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-5"&gt;
+&lt;p&gt;
+This one is a bit more difficult, as it depends on what you're using to flash the device, and what device you are flashing.
+&lt;/p&gt;
+
+&lt;p&gt;
+In my example below, I'm going to be using the PIC24FJ256GA702 and the PICkit3 for flashing the firmware. Flashing different PICs will be very similar (at least for PIC16 and PIC24, I'm unsure about PIC32), but if you use a different PICkit (or something else) to flash your firmware, you'll need to investigate a bit further.
+&lt;/p&gt;
+
+&lt;p&gt;
+For flashing on the command line, I use &lt;code&gt;pk3cmd&lt;/code&gt;, which on my system was in the folder &lt;code&gt;C:\Program Files (x86)\Microchip\MPLABX\v5.20\mplab_platform\mplab_ipe&lt;/code&gt;. You'll need to add the appropriate folder to your PATH system variable.
+&lt;/p&gt;
+
+&lt;p&gt;
+Typing in &lt;code&gt;pk3cmd&lt;/code&gt; will bring up the help file, which will give you a lot more information that I'm going to go into here.
+&lt;/p&gt;
+
+&lt;p&gt;
+The main bits are:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;P&amp;lt;part&amp;gt;  24fj256ga702&lt;/li&gt;
+&lt;li&gt;F&amp;lt;file&amp;gt;  dist\default\production\test&lt;sub&gt;project.X.production.hex&lt;/sub&gt;&lt;/li&gt;
+&lt;li&gt;T&amp;lt;tool&amp;gt;  PK3 = PICKIT3 (look here for more details on different flashing tools)&lt;/li&gt;
+&lt;li&gt;M       Programs all available memory (you can select to only program certain bits if wanted&lt;/li&gt;
+&lt;li&gt;L       Release from device from reset after programming.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+Using the above, I can use the following command line to flash the firmware:
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;code&gt;pk3cmd -Fdist/default/production/test_project.X.production.hex  -P24FJ64GA204 -L -M&lt;/code&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+The verbose output will let you know if you were successful or not.
+&lt;/p&gt;
+
+&lt;p&gt;
+As I am very likely to make a mistake with the above command line, I'll normally place the above line into a file called &lt;code&gt;flash.bat&lt;/code&gt;, allowing me to call, &lt;code&gt;flash&lt;/code&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgbdbcb90" class="outline-2"&gt;
+&lt;h2 id="orgbdbcb90"&gt;&lt;span class="section-number-2"&gt;6&lt;/span&gt; Wrapping it up&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-6"&gt;
+&lt;p&gt;
+Following the above should give you a minimum setup needed to develop PIC24 devices using the command line. I use this setup daily, but with a few additions for unit testing and for my Vim interaction's (both of which I'll discuss another time).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="misc"></category><category term="pic"></category><category term="pic24"></category><category term="command-line"></category></entry></feed>

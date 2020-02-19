@@ -2,57 +2,59 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>My Embedded Electronics Blog - blog-category</title>
-        <link rel="stylesheet" href="../theme/css/main.css" />
+        <title>My Embedded Electronics Blog</title>
+        <link rel="stylesheet" href="https://sdaglish.github.io/theme/css/main.css" />
+        <link href="https://sdaglish.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Embedded Electronics Blog Atom Feed" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="../">My Embedded Electronics Blog</a></h1>
+                <h1><a href="https://sdaglish.github.io/">My Embedded Electronics Blog</a></h1>
                 <nav><ul>
-                    <li class="active"><a href="../category/blog-category.html">blog-category</a></li>
+                    <li><a href="https://sdaglish.github.io/category/misc.html">misc</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../developming_pic24_projecs_using_the_command_line.html">Developing PIC24 Projecs using the Command Line</a></h1>
+                    <h1 class="entry-title"><a href="https://sdaglish.github.io/developing_pic24_projects_using_the_command_line.html">Developing PIC24 Projects using the Command Line</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2020-02-19T00:00:00+00:00">
                 Published: Wed 19 February 2020
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="../author/steven-daglish.html">Steven Daglish</a>
+                By                         <a class="url fn" href="https://sdaglish.github.io/author/steven-daglish.html">Steven Daglish</a>
         </address>
-<p>In <a href="../category/blog-category.html">blog-category</a>.</p>
-<p>tags: <a href="../tag/pic.html">pic</a> <a href="../tag/pic24.html">pic24</a> <a href="../tag/command-line.html">command-line</a> </p>
+<p>In <a href="https://sdaglish.github.io/category/misc.html">misc</a>.</p>
+<p>tags: <a href="https://sdaglish.github.io/tag/pic.html">pic</a> <a href="https://sdaglish.github.io/tag/pic24.html">pic24</a> <a href="https://sdaglish.github.io/tag/command-line.html">command-line</a> </p>
 </footer><!-- /.post-info --><div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8724da2">1. Introduction</a></li>
-<li><a href="#org07f7a7c">2. Getting everything together</a>
+<li><a href="#orgcc134d5">1. Introduction</a></li>
+<li><a href="#orgdaa9f2a">2. Getting everything together</a>
 <ul>
-<li><a href="#orgf01fdcb">2.1. Path System Variables</a></li>
-<li><a href="#org03a704a">2.2. Installation</a></li>
+<li><a href="#org7051f7e">2.1. Path System Variables</a></li>
+<li><a href="#org990dc23">2.2. Installation</a></li>
 </ul>
 </li>
-<li><a href="#org364d152">3. Adding new files</a>
+<li><a href="#org76c7d3a">3. Adding new files</a>
 <ul>
-<li><a href="#org8f2196e">3.1. Adding files by MPLAB X IDE</a></li>
-<li><a href="#org7b7d866">3.2. Adding files without the IDE</a></li>
+<li><a href="#org235e980">3.1. Adding files by MPLAB X IDE</a></li>
+<li><a href="#org1178e69">3.2. Adding files without the IDE</a></li>
 </ul>
 </li>
-<li><a href="#org6e44343">4. Compiling the firmware</a></li>
-<li><a href="#org2e6db9b">5. Flashing the firmware</a></li>
+<li><a href="#orgbd02123">4. Compiling the firmware</a></li>
+<li><a href="#orgf802480">5. Flashing the firmware</a></li>
+<li><a href="#orgbdbcb90">6. Wrapping it up</a></li>
 </ul>
 </div>
 </div>
 
 
-<div id="outline-container-org8724da2" class="outline-2">
-<h2 id="org8724da2"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-orgcc134d5" class="outline-2">
+<h2 id="orgcc134d5"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 In both my professional and private projects, I use Microchip's PIC microprocessors A LOT. In fact, at the time of writing, I have about 10 different projects on the go at the same time, all of which are using different PICs (mainly PIC16 and PIC24s).
@@ -73,29 +75,29 @@ However, it's not perfect, and has a number of issues that were starting to anno
 <li>Inability to choose a different text editor (I'm a fan of Vim, and missed a lot of the keybindings as well as the modal way of working).</li>
 <li>Not being able to flash without using the mouse. This one annoys me a lot, and it would be great to find out there is a way get around this one).</li>
 <li>A few other things that I won't get into here.</li>
-<li>The built in version control didn't seem to work that well, but that could be that I was tring to use it before I was profesiont with git (I now prefer to use the command line for version control anyway).</li>
+<li>The built in version control didn't seem to work that well, but that could be that I was trying to use it before I was profesiont with git (I now prefer to use the command line for version control anyway).</li>
 </ul>
 
 <p>
-A don't whish to slag off the IDE as it is perfectly usable, and I know a number of people who use it professionally without any issues. However, I needed to look into alternatives that would give me the ability to do the following:
+A don't wish to slag off the IDE as it is perfectly usable, and I know a number of people who use it professionally without any issues. However, I needed to look into alternatives that would give me the ability to do the following:
 </p>
 
 <ul class="org-ul">
 <li>Use the command line when I wanted to use it.</li>
 <li>Allow me to use any editor I wanted (not including editing in whatever, and then compiling and flashing in MPLAB).
 <ul class="org-ul">
-<li>Personally, I use Vim, but I have used the setup below with vscode as well.</li>
+<li>Personally, I use Vim, but I have used the setup below with vs-code as well.</li>
 </ul></li>
-<li>Allow me to compile and flash using either the command line or directly in my edior IDE of choice</li>
+<li>Allow me to compile and flash using either the command line or directly in my editor IDE of choice</li>
 <li>Debug without using MPLAB (still working on a solution to that one&#x2026;).</li>
 <li>Include unit testing.
 <ul class="org-ul">
-<li>This could be through the command line, in which case, I could still use MPLAB for the main project work, but I'm looking at something a bit more intergrated.</li>
+<li>This could be through the command line, in which case, I could still use MPLAB for the main project work, but I'm looking at something a bit more integrated.</li>
 <li>I'm using Ceedling to unit test my projects, but I'll discuss that in another blog.</li>
 </ul></li>
-<li>Add autocomplete and linting that work better than what I was getting with MPLAB.
+<li>Add auto-complete and linting that work better than what I was getting with MPLAB.
 <ul class="org-ul">
-<li>This is very editor / IDE specific. Since I'm using Vim, I find that YouCompleteMe works very well, even in this embedded setup, and I'll disucss that in another blog.</li>
+<li>This is very editor / IDE specific. Since I'm using Vim, I find that YouCompleteMe works very well, even in this embedded setup, and I'll discuss that in another blog.</li>
 </ul></li>
 </ul>
 
@@ -114,19 +116,19 @@ A couple of things to note:
 </div>
 </div>
 
-<div id="outline-container-org07f7a7c" class="outline-2">
-<h2 id="org07f7a7c"><span class="section-number-2">2</span> Getting everything together</h2>
+<div id="outline-container-orgdaa9f2a" class="outline-2">
+<h2 id="orgdaa9f2a"><span class="section-number-2">2</span> Getting everything together</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-As mentioned abover, I'm using Windows 10. I have the same setup working fine on Windows 7. I will probably do some testing on a Linux VM at some point. I have no means of testing things on a Mac machine (please let me know if you're a Mac user and have any experience with a similar setup as I'd be interested to know how things are different / similar).
+As mentioned above, I'm using Windows 10. I have the same setup working fine on Windows 7. I will probably do some testing on a Linux VM at some point. I have no means of testing things on a Mac machine (please let me know if you're a Mac user and have any experience with a similar setup as I'd be interested to know how things are different / similar).
 </p>
 </div>
 
-<div id="outline-container-orgf01fdcb" class="outline-3">
-<h3 id="orgf01fdcb"><span class="section-number-3">2.1</span> Path System Variables</h3>
+<div id="outline-container-org7051f7e" class="outline-3">
+<h3 id="org7051f7e"><span class="section-number-3">2.1</span> Path System Variables</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-The PATH system variable will need to be updated to include a couple of mplab files.
+The PATH system variable will need to be updated to include a couple of MPLAB files.
 </p>
 
 <p>
@@ -145,8 +147,8 @@ Of course, this will massively depend on your system setup.
 </div>
 </div>
 
-<div id="outline-container-org03a704a" class="outline-3">
-<h3 id="org03a704a"><span class="section-number-3">2.2</span> Installation</h3>
+<div id="outline-container-org990dc23" class="outline-3">
+<h3 id="org990dc23"><span class="section-number-3">2.2</span> Installation</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Despite trying to not use MPLAB, for this setup, you will need to install MPLAB X <a href="https://www.microchip.com/mplab/mplab-x-ide">here</a>. At the time of writing, the latest version is v5.30, but as we aren't using much of MPLAB, the instructions below should work on most versions (I'll update the instructions if I find anything breaks).
@@ -168,16 +170,16 @@ Once you're all set up, open up MPLAB X and create your project as you would for
 </div>
 
 
-<div id="outline-container-org364d152" class="outline-2">
-<h2 id="org364d152"><span class="section-number-2">3</span> Adding new files</h2>
+<div id="outline-container-org76c7d3a" class="outline-2">
+<h2 id="org76c7d3a"><span class="section-number-2">3</span> Adding new files</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 When adding new files to an PIC project, you can either use the MPLAB IDE or you can add them manually by editing nbproject/configurations.xml . Both work well, depending on your needs.
 </p>
 </div>
 
-<div id="outline-container-org8f2196e" class="outline-3">
-<h3 id="org8f2196e"><span class="section-number-3">3.1</span> Adding files by MPLAB X IDE</h3>
+<div id="outline-container-org235e980" class="outline-3">
+<h3 id="org235e980"><span class="section-number-3">3.1</span> Adding files by MPLAB X IDE</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 When setting up a new project with MPLAB, I will often use the IDE to create the main.c file. The reasons I do this are:
@@ -188,7 +190,7 @@ When setting up a new project with MPLAB, I will often use the IDE to create the
 <li>I don't have to use any command line tools at this early stage to update the makefile and other config files (which you will need to do when using the command line / configurations.xml edits)</li>
 <li>I can compile the firmware in the IDE and make sure everything is setup as expected</li>
 <li>I can use the IDE to setup a couple of other things such as the configuration bits</li>
-<li>If I have the target hardware at hand, I can flash using the IDE. This way, I know that any flashing issues later are related to my commandline setup, and not a hardware issue.</li>
+<li>If I have the target hardware at hand, I can flash using the IDE. This way, I know that any flashing issues later are related to my command-line setup, and not a hardware issue.</li>
 </ul>
 
 <p>
@@ -197,15 +199,15 @@ After I've done the above, I will often close the IDE and start working on the c
 </div>
 </div>
 
-<div id="outline-container-org7b7d866" class="outline-3">
-<h3 id="org7b7d866"><span class="section-number-3">3.2</span> Adding files without the IDE</h3>
+<div id="outline-container-org1178e69" class="outline-3">
+<h3 id="org1178e69"><span class="section-number-3">3.2</span> Adding files without the IDE</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 It is possible to add files to the project without using the IDE. All the information we need is contained with the file nbproject\configurations.xml
 </p>
 
 <p>
-Open up the file and have a look throught it. Be careful though, because if you edit it incorrectly, you can mess up your project and it can be very difficult to fix (unless you're using some version of version control, in which case edit away).
+Open up the file and have a look through it. Be careful though, because if you edit it incorrectly, you can mess up your project and it can be very difficult to fix (unless you're using some version of version control, in which case edit away).
 </p>
 
 <p>
@@ -255,7 +257,7 @@ Assuming these folder and files already exist (manually create them if you haven
 </div>
 
 <p>
-The main bits of information here are in lines 5 and 14. Here is where we are telling the config there the files are in the project folder, and where they will show up in MPlab. 
+The main bits of information here are in lines 5 and 14. Here is where we are telling the config there the files are in the project folder, and where they will show up in MPLAB. 
 </p>
 
 <p>
@@ -271,18 +273,18 @@ If everything went well, then the generator will finish quietly with no output (
 </p>
 
 <p>
-If the generater was succesful, you can then call <code>make</code> in the project's root folder and the project will compile. The output will be exactly the same as if you were compiling in MPLAB, except that you won't have the pretty colours to help show important information. The information will still be there, but you'll have to pick it out a bit more. That is unless your editor / IDE is setup to use the complier's output (which I won't go into here, but I do have something setup in Vim).
+If the generator was successful, you can then call <code>make</code> in the project's root folder and the project will compile. The output will be exactly the same as if you were compiling in MPLAB, except that you won't have the pretty colours to help show important information. The information will still be there, but you'll have to pick it out a bit more. That is unless your editor / IDE is setup to use the complier's output (which I won't go into here, but I do have something setup in Vim).
 </p>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org6e44343" class="outline-2">
-<h2 id="org6e44343"><span class="section-number-2">4</span> Compiling the firmware</h2>
+<div id="outline-container-orgbd02123" class="outline-2">
+<h2 id="orgbd02123"><span class="section-number-2">4</span> Compiling the firmware</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-Once you have the files added to your project and the new Makefile, compiling the software is pretty simple by typing <code>make</code> from witin the project home folder. 
+Once you have the files added to your project and the new Makefile, compiling the software is pretty simple by typing <code>make</code> from within the project home folder. 
 </p>
 
 <p>
@@ -295,15 +297,15 @@ Typing in <code>make</code> and pressing return, you should have the same output
 </div>
 </div>
 
-<div id="outline-container-org2e6db9b" class="outline-2">
-<h2 id="org2e6db9b"><span class="section-number-2">5</span> Flashing the firmware</h2>
+<div id="outline-container-orgf802480" class="outline-2">
+<h2 id="orgf802480"><span class="section-number-2">5</span> Flashing the firmware</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 This one is a bit more difficult, as it depends on what you're using to flash the device, and what device you are flashing.
 </p>
 
 <p>
-In my example below, I'm going to be using the PIC24FJ256GA702 and the PICkit3 for flashing the firmware. Flashing different PICs will be very similar (at least for PIC16 and PIC24, I'm usure about PIC32), but if you use a different PICkit (or something else) to flash your firmware, you'll need to investigate a bit further.
+In my example below, I'm going to be using the PIC24FJ256GA702 and the PICkit3 for flashing the firmware. Flashing different PICs will be very similar (at least for PIC16 and PIC24, I'm unsure about PIC32), but if you use a different PICkit (or something else) to flash your firmware, you'll need to investigate a bit further.
 </p>
 
 <p>
@@ -342,6 +344,15 @@ As I am very likely to make a mistake with the above command line, I'll normally
 </p>
 </div>
 </div>
+
+<div id="outline-container-orgbdbcb90" class="outline-2">
+<h2 id="orgbdbcb90"><span class="section-number-2">6</span> Wrapping it up</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Following the above should give you a minimum setup needed to develop PIC24 devices using the command line. I use this setup daily, but with a few additions for unit testing and for my Vim interaction's (both of which I'll discuss another time).
+</p>
+</div>
+</div>
                 </article>
             </aside><!-- /#featured -->
         <section id="extras" class="body">
@@ -357,6 +368,7 @@ As I am very likely to make a mistake with the above command line, I'll normally
                 <div class="social">
                         <h2>social</h2>
                         <ul>
+                            <li><a href="https://sdaglish.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
 
                             <li><a href="#">You can add links in your config file</a></li>
                             <li><a href="#">Another social link</a></li>
