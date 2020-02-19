@@ -3,29 +3,29 @@
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#orgcc134d5"&gt;1. Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orgdaa9f2a"&gt;2. Getting everything together&lt;/a&gt;
+&lt;li&gt;&lt;a href="#org8d3b1be"&gt;1. Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org795a04e"&gt;2. Getting everything together&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#org7051f7e"&gt;2.1. Path System Variables&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org990dc23"&gt;2.2. Installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgc5e70b4"&gt;2.1. Path System Variables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org3305eef"&gt;2.2. Installation&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="#org76c7d3a"&gt;3. Adding new files&lt;/a&gt;
+&lt;li&gt;&lt;a href="#org46e5f34"&gt;3. Adding new files&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#org235e980"&gt;3.1. Adding files by MPLAB X IDE&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org1178e69"&gt;3.2. Adding files without the IDE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orga53aef1"&gt;3.1. Adding files by MPLAB X IDE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org838222c"&gt;3.2. Adding files without the IDE&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="#orgbd02123"&gt;4. Compiling the firmware&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orgf802480"&gt;5. Flashing the firmware&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orgbdbcb90"&gt;6. Wrapping it up&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgce61b2a"&gt;4. Compiling the firmware&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org7948145"&gt;5. Flashing the firmware&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org36914aa"&gt;6. Wrapping it up&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-orgcc134d5" class="outline-2"&gt;
-&lt;h2 id="orgcc134d5"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Introduction&lt;/h2&gt;
+&lt;div id="outline-container-org8d3b1be" class="outline-2"&gt;
+&lt;h2 id="org8d3b1be"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Introduction&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-1"&gt;
 &lt;p&gt;
 In both my professional and private projects, I use Microchip's PIC microprocessors A LOT. In fact, at the time of writing, I have about 10 different projects on the go at the same time, all of which are using different PICs (mainly PIC16 and PIC24s).
@@ -87,16 +87,16 @@ A couple of things to note:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdaa9f2a" class="outline-2"&gt;
-&lt;h2 id="orgdaa9f2a"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Getting everything together&lt;/h2&gt;
+&lt;div id="outline-container-org795a04e" class="outline-2"&gt;
+&lt;h2 id="org795a04e"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Getting everything together&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-2"&gt;
 &lt;p&gt;
 As mentioned above, I'm using Windows 10. I have the same setup working fine on Windows 7. I will probably do some testing on a Linux VM at some point. I have no means of testing things on a Mac machine (please let me know if you're a Mac user and have any experience with a similar setup as I'd be interested to know how things are different / similar).
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7051f7e" class="outline-3"&gt;
-&lt;h3 id="org7051f7e"&gt;&lt;span class="section-number-3"&gt;2.1&lt;/span&gt; Path System Variables&lt;/h3&gt;
+&lt;div id="outline-container-orgc5e70b4" class="outline-3"&gt;
+&lt;h3 id="orgc5e70b4"&gt;&lt;span class="section-number-3"&gt;2.1&lt;/span&gt; Path System Variables&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-2-1"&gt;
 &lt;p&gt;
 The PATH system variable will need to be updated to include a couple of MPLAB files.
@@ -118,8 +118,8 @@ Of course, this will massively depend on your system setup.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org990dc23" class="outline-3"&gt;
-&lt;h3 id="org990dc23"&gt;&lt;span class="section-number-3"&gt;2.2&lt;/span&gt; Installation&lt;/h3&gt;
+&lt;div id="outline-container-org3305eef" class="outline-3"&gt;
+&lt;h3 id="org3305eef"&gt;&lt;span class="section-number-3"&gt;2.2&lt;/span&gt; Installation&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-2-2"&gt;
 &lt;p&gt;
 Despite trying to not use MPLAB, for this setup, you will need to install MPLAB X &lt;a href="https://www.microchip.com/mplab/mplab-x-ide"&gt;here&lt;/a&gt;. At the time of writing, the latest version is v5.30, but as we aren't using much of MPLAB, the instructions below should work on most versions (I'll update the instructions if I find anything breaks).
@@ -141,16 +141,16 @@ Once you're all set up, open up MPLAB X and create your project as you would for
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-org76c7d3a" class="outline-2"&gt;
-&lt;h2 id="org76c7d3a"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; Adding new files&lt;/h2&gt;
+&lt;div id="outline-container-org46e5f34" class="outline-2"&gt;
+&lt;h2 id="org46e5f34"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; Adding new files&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-3"&gt;
 &lt;p&gt;
 When adding new files to an PIC project, you can either use the MPLAB IDE or you can add them manually by editing nbproject/configurations.xml . Both work well, depending on your needs.
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org235e980" class="outline-3"&gt;
-&lt;h3 id="org235e980"&gt;&lt;span class="section-number-3"&gt;3.1&lt;/span&gt; Adding files by MPLAB X IDE&lt;/h3&gt;
+&lt;div id="outline-container-orga53aef1" class="outline-3"&gt;
+&lt;h3 id="orga53aef1"&gt;&lt;span class="section-number-3"&gt;3.1&lt;/span&gt; Adding files by MPLAB X IDE&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-3-1"&gt;
 &lt;p&gt;
 When setting up a new project with MPLAB, I will often use the IDE to create the main.c file. The reasons I do this are:
@@ -170,8 +170,8 @@ After I've done the above, I will often close the IDE and start working on the c
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1178e69" class="outline-3"&gt;
-&lt;h3 id="org1178e69"&gt;&lt;span class="section-number-3"&gt;3.2&lt;/span&gt; Adding files without the IDE&lt;/h3&gt;
+&lt;div id="outline-container-org838222c" class="outline-3"&gt;
+&lt;h3 id="org838222c"&gt;&lt;span class="section-number-3"&gt;3.2&lt;/span&gt; Adding files without the IDE&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-3-2"&gt;
 &lt;p&gt;
 It is possible to add files to the project without using the IDE. All the information we need is contained with the file nbproject\configurations.xml
@@ -251,8 +251,8 @@ If the generator was successful, you can then call &lt;code&gt;make&lt;/code&gt;
 &lt;/div&gt;
 
 
-&lt;div id="outline-container-orgbd02123" class="outline-2"&gt;
-&lt;h2 id="orgbd02123"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; Compiling the firmware&lt;/h2&gt;
+&lt;div id="outline-container-orgce61b2a" class="outline-2"&gt;
+&lt;h2 id="orgce61b2a"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; Compiling the firmware&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-4"&gt;
 &lt;p&gt;
 Once you have the files added to your project and the new Makefile, compiling the software is pretty simple by typing &lt;code&gt;make&lt;/code&gt; from within the project home folder. 
@@ -268,8 +268,8 @@ Typing in &lt;code&gt;make&lt;/code&gt; and pressing return, you should have the
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf802480" class="outline-2"&gt;
-&lt;h2 id="orgf802480"&gt;&lt;span class="section-number-2"&gt;5&lt;/span&gt; Flashing the firmware&lt;/h2&gt;
+&lt;div id="outline-container-org7948145" class="outline-2"&gt;
+&lt;h2 id="org7948145"&gt;&lt;span class="section-number-2"&gt;5&lt;/span&gt; Flashing the firmware&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-5"&gt;
 &lt;p&gt;
 This one is a bit more difficult, as it depends on what you're using to flash the device, and what device you are flashing.
@@ -316,8 +316,8 @@ As I am very likely to make a mistake with the above command line, I'll normally
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgbdbcb90" class="outline-2"&gt;
-&lt;h2 id="orgbdbcb90"&gt;&lt;span class="section-number-2"&gt;6&lt;/span&gt; Wrapping it up&lt;/h2&gt;
+&lt;div id="outline-container-org36914aa" class="outline-2"&gt;
+&lt;h2 id="org36914aa"&gt;&lt;span class="section-number-2"&gt;6&lt;/span&gt; Wrapping it up&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-6"&gt;
 &lt;p&gt;
 Following the above should give you a minimum setup needed to develop PIC24 devices using the command line. I use this setup daily, but with a few additions for unit testing and for my Vim interaction's (both of which I'll discuss another time).
