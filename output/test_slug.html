@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>The Title Of This BlogPost</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">Test blog</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="./category/blog-category.html">blog-category</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./test_slug.html" rel="bookmark"
+           title="Permalink to The Title Of This BlogPost">The Title Of This BlogPost</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2001-01-01T00:00:00+01:00">
+                Published: Mon 01 January 2001
+        </abbr>
+		<br />
+        <abbr class="modified" title="2015-12-29T00:00:00+01:00">
+                Updated: Tue 29 December 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/steven-daglish.html">Steven Daglish</a>
+        </address>
+<p>In <a href="./category/blog-category.html">blog-category</a>.</p>
+<p>tags: <a href="./tag/my.html">my</a> <a href="./tag/first.html">first</a> <a href="./tag/tags.html">tags</a> </p>
+</footer><!-- /.post-info -->      <div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Introduction</a></li>
+<li><a href="#sec-2">2. Getting everything together</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Installation</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Adding new files</a>
+<ul>
+<li><a href="#sec-3-1">3.1. Adding files by MPLAB X IDE</a></li>
+<li><a href="#sec-3-2">3.2. Adding files without the IDE</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+In both my professional and private projects, I use Microchip's PIC microprocessors A LOT. In fact, at the time of writing, I have about 10 different projects on the go at the same time, all of which are using different PICs (mainly PIC16 and PIC24s).
+</p>
+
+<p>
+The easiest way to get started developing PIC programs if by using Microchip's IDE: MPLAB X (v5.30 at the time of writing). This allows you to create new projects, add files, compile, and flash the firmware with relative ease. For the most part, it does work pretty well, and for a beginner it's probably the best way to get started with PIC development (and it was how I also got started).
+</p>
+
+<p>
+However, it's not perfect, and has a number of issues that were starting to annoy me a bit (maybe there were ways around them, but I didn't find anything, and by that point I was starting to look into different editors anyway). Some of the main issues I was having were:
+</p>
+
+<ul class="org-ul">
+<li>Incorrect red underlining, saying functions that did not exist (when I knew they did)
+</li>
+<li>Not being able to flash the code without the code first being rebuilt (even when no changes were made to the software).
+</li>
+<li>The auto-complete would be a bit odd sometimes, where sometimes it just wouldn't work.
+</li>
+<li>Inability to choose a different text editor (I'm a fan of Vim, and missed a lot of the keybindings as well as the modal way of working).
+</li>
+<li>Not being able to flash without using the mouse. This one annoys me a lot, and it would be great to find out there is a way get around this one).
+</li>
+<li>A few other things that I won't get into here.
+</li>
+<li>The built in version control didn't seem to work that well, but that could be that I was tring to use it before I was profesiont with git (I now prefer to use the command line for version control anyway).
+</li>
+</ul>
+
+<p>
+A don't whish to slag off the IDE as it is perfectly usable, and I know a number of people who use it professionally without any issues. However, I needed to look into alternatives that would give me the ability to do the following:
+</p>
+
+<ul class="org-ul">
+<li>Use the command line when I wanted to use it.
+</li>
+<li>Allow me to use any editor I wanted (not including editing in whatever, and then compiling and flashing in MPLAB).
+<ul class="org-ul">
+<li>Personally, I use Vim, but I have used the setup below with vscode as well.
+</li>
+</ul>
+</li>
+<li>Allow me to compile and flash using either the command line or directly in my edior IDE of choice
+</li>
+<li>Debug without using MPLAB (still working on a solution to that one&#x2026;).
+</li>
+<li>Include unit testing.
+<ul class="org-ul">
+<li>This could be through the command line, in which case, I could still use MPLAB for the main project work, but I'm looking at something a bit more intergrated.
+</li>
+<li>I'm using Ceedling to unit test my projects, but I'll discuss that in another blog.
+</li>
+</ul>
+</li>
+<li>Add autocomplete and linting that work better than what I was getting with MPLAB.
+<ul class="org-ul">
+<li>This is very editor / IDE specific. Since I'm using Vim, I find that YouCompleteMe works very well, even in this embedded setup, and I'll disucss that in another blog.
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+That's quite a lot, but for now, I'm going to concentrate on getting everything working on the command line. I'll worry about the editor / IDE integration at another point.
+</p>
+
+<p>
+A couple of things to note:
+</p>
+
+<ul class="org-ul">
+<li>I'm using Windows 10 with Cmder
+</li>
+<li>You still need to have MPLAB X installed.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Getting everything together</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+As mentioned abover, I'm using Windows 10. I have the same setup working fine on Windows 7. I will probably do some testing on a Linux VM at some point. I have no means of testing things on a Mac machine (please let me know if you're a Mac user and have any experience with a similar setup as I'd be interested to know how things are different / similar).
+</p>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Installation</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Despite trying to not use MPLAB, for this setup, you will need to install MPLAB X <a href="https://www.microchip.com/mplab/mplab-x-ide">here</a>. At the time of writing, the latest version is v5.30, but as we aren't using much of MPLAB, the instructions below should work on most versions (I'll update the instructions if I find anything breaks).
+</p>
+
+<p>
+The installation file will install both the IDE and the IPE. We won't be using the IPE, but for some, it might be of use.
+</p>
+
+<p>
+If you're on Windows, I'd also advice installing Cmder. This is a terminal emulator for Windows that has a similar feel / look to bash, and has some interesting features for git use. Cmder can be found at <a href="https://cmder.net"><a href="https://cmder.net">https://cmder.net</a></a>
+</p>
+
+<p>
+Once you're all set up, open up MPLAB X and create your project as you would for any other project.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Adding new files</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+When adding new files to an PIC project, you can either use the MPLAB IDE or you can add them manually by editing nbproject/configurations.xml . Both work well, depending on your needs.
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Adding files by MPLAB X IDE</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+When setting up a new project with MPLAB, I will often use the IDE to create the main.c file. The reasons I do this are:
+</p>
+
+<ul class="org-ul">
+<li>I already have the IDE open, so it's quick and simple to do.
+</li>
+<li>I don't have to use any command line tools at this early stage to update the makefile and other config files (which you will need to do when using the command line / configurations.xml edits)
+</li>
+<li>I can compile the firmware in the IDE and make sure everything is setup as expected
+</li>
+<li>I can use the IDE to setup a couple of other things such as the configuration bits
+</li>
+<li>If I have the target hardware at hand, I can flash using the IDE. This way, I know that any flashing issues later are related to my commandline setup, and not a hardware issue.
+</li>
+</ul>
+
+<p>
+After I've done the above, I will often close the IDE and start working on the command line. However, if you're adding a lot of files now, it might be easier to do this now while the IDE is open as it will probably be easier than adding them all to the configurations.xml file, but that's a personal preference.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Adding files without the IDE</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+It is possible to add files to the project without using the IDE. All the information we need is contained with the file nbproject\configurations.xml
+</p>
+
+<p>
+Open up the file and have a look throught it. Be careful though, because if you edit it incorrectly, you can mess up your project and it can be very difficult to fix (unless you're using some version of version control, in which case edit away).
+</p>
+
+<p>
+The bit that we are interested is very close to the top under the line 
+</p>
+
+<p>
+<code>&lt;logicalFolder name="root" displayName="root" projectFiles="true"&gt;</code>
+</p>
+
+<p>
+This tag contains all the information used by the Makefile generator, and by MPLAB to compile the project. You can add folders, sub-folders, and files as you see fit.
+</p>
+
+<p>
+For example, lets say we want to add a module called <code>port_a_driver</code>, and have the <code>.c</code> in folder <code>src</code> and the <code>.h</code> file in folder <code>inc</code>.
+</p>
+
+<p>
+Assuming these folder and files already exist (manually create them if you haven't), the <code>logicalFolder</code> tag is updated as shown below:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="linenr">1: </span><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">void</span>)
+<span class="linenr">2: </span>{
+<span class="linenr">3: </span>    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">something</span> = 0;
+<span class="linenr">4: </span>    <span style="font-weight: bold;">return</span>;
+<span class="linenr">5: </span>}
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;<span style="font-weight: bold;">logicalFolder</span> <span style="font-weight: bold; font-style: italic;">name</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">root</span><span style="font-style: italic;">"</span> <span style="font-weight: bold; font-style: italic;">displayName</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">root</span><span style="font-style: italic;">"</span> <span style="font-weight: bold; font-style: italic;">projectFiles</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">true</span><span style="font-style: italic;">"</span>&gt;
+  &lt;<span style="font-weight: bold;">logicalFolder</span> <span style="font-weight: bold; font-style: italic;">name</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">HeaderFiles</span><span style="font-style: italic;">"</span>
+     <span style="font-weight: bold; font-style: italic;">displayName</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">Header Files</span><span style="font-style: italic;">"</span>
+        <span style="font-weight: bold; font-style: italic;">projectFiles</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">true</span><span style="font-style: italic;">"</span>&gt;
+     &lt;<span style="font-weight: bold;">itemPath</span>&gt;inc/port_a_driver.h&lt;/<span style="font-weight: bold;">itemPath</span>&gt;   
+  &lt;/<span style="font-weight: bold;">logicalFolder</span>&gt;
+  &lt;<span style="font-weight: bold;">logicalFolder</span> <span style="font-weight: bold; font-style: italic;">name</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">LinkerScript</span><span style="font-style: italic;">"</span>
+     <span style="font-weight: bold; font-style: italic;">displayName</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">Linker Files</span><span style="font-style: italic;">"</span>
+        <span style="font-weight: bold; font-style: italic;">projectFiles</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">true</span><span style="font-style: italic;">"</span>&gt;
+  &lt;/<span style="font-weight: bold;">logicalFolder</span>&gt;
+  &lt;<span style="font-weight: bold;">logicalFolder</span> <span style="font-weight: bold; font-style: italic;">name</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">SourceFiles</span><span style="font-style: italic;">"</span>
+     <span style="font-weight: bold; font-style: italic;">displayName</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">Source Files</span><span style="font-style: italic;">"</span>
+        <span style="font-weight: bold; font-style: italic;">projectFiles</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">true</span><span style="font-style: italic;">"</span>&gt;
+     &lt;<span style="font-weight: bold;">itemPath</span>&gt;src/port_a_driver.c&lt;/<span style="font-weight: bold;">itemPath</span>&gt;
+  &lt;/<span style="font-weight: bold;">logicalFolder</span>&gt;
+  &lt;<span style="font-weight: bold;">logicalFolder</span> <span style="font-weight: bold; font-style: italic;">name</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">ExternalFiles</span><span style="font-style: italic;">"</span>
+     <span style="font-weight: bold; font-style: italic;">displayName</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">Important Files</span><span style="font-style: italic;">"</span>
+        <span style="font-weight: bold; font-style: italic;">projectFiles</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">false</span><span style="font-style: italic;">"</span>&gt;
+     &lt;<span style="font-weight: bold;">itemPath</span>&gt;Makefile&lt;/<span style="font-weight: bold;">itemPath</span>&gt;
+  &lt;/<span style="font-weight: bold;">logicalFolder</span>&gt;
+  &lt;<span style="font-weight: bold;">itemPath</span>&gt;main.c&lt;/<span style="font-weight: bold;">itemPath</span>&gt;
+&lt;/<span style="font-weight: bold;">logicalFolder</span>&gt;
+</pre>
+</div>
+
+<p>
+The main bits of information here are in lines 5 and 14. Here is where we are telling the config there the files are in the project folder, and where they will show up in MPlab. 
+</p>
+
+<p>
+Next you need to call <code>prjMakefilesGenerator.bat .</code> in the project's root folder. This will use the edited config file above and produce a new Makefile that contains references to the above two files.
+</p>
+
+<p>
+For the above to work you will need to add the folder containing the above to your <code>PATH</code>. For me this was at <code>C:\Program Files (x86)\Microchip\MPLABX\v5.30\mplab_platform\bin</code>
+</p>
+
+<p>
+If everything went well, then the generator will finish quietly with no output (I even found that adding the <code>-v</code> didn't show anything).
+</p>
+
+<p>
+If the generater was succesful, you can then call <code>make</code> in the project's root folder and the project will compile. The output will be exactly the same as if you were compiling in MPLAB, except that you won't have the pretty colours to help show important information. The information will still be there, but you'll have to pick it out a bit more. That is unless your editor / IDE is setup to use the complier's output (which I won't go into here, but I do have something setup in Vim).
+</p>
+</div>
+</div>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
