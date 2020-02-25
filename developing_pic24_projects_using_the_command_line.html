@@ -138,29 +138,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd1e43cd">1. Introduction</a></li>
-<li><a href="#orgb939486">2. Getting everything together</a>
+<li><a href="#org5274dbc">1. Introduction</a></li>
+<li><a href="#org69c092b">2. Getting everything together</a>
 <ul>
-<li><a href="#org207e931">2.1. Path System Variables</a></li>
-<li><a href="#orgdb53e89">2.2. Installation</a></li>
+<li><a href="#orgdaaa8c0">2.1. Path System Variables</a></li>
+<li><a href="#org7d95507">2.2. Installation</a></li>
 </ul>
 </li>
-<li><a href="#orgcd381ef">3. Adding new files</a>
+<li><a href="#orgbb32b35">3. Adding new files</a>
 <ul>
-<li><a href="#orgd624375">3.1. Adding files by MPLAB X IDE</a></li>
-<li><a href="#orgef686a6">3.2. Adding files without the IDE</a></li>
+<li><a href="#orgf40bdfc">3.1. Adding files by MPLAB X IDE</a></li>
+<li><a href="#orgfeb28f6">3.2. Adding files without the IDE</a></li>
 </ul>
 </li>
-<li><a href="#orgea7118d">4. Compiling the firmware</a></li>
-<li><a href="#orgdaae6e6">5. Flashing the firmware</a></li>
-<li><a href="#orgd4311ef">6. Wrapping it up</a></li>
+<li><a href="#org1e51b14">4. Compiling the firmware</a></li>
+<li><a href="#org9c3b0d0">5. Flashing the firmware</a></li>
+<li><a href="#orgc6e7ee3">6. Wrapping it up</a></li>
 </ul>
 </div>
 </div>
 
 
-<div id="outline-container-orgd1e43cd" class="outline-2">
-<h2 id="orgd1e43cd"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-org5274dbc" class="outline-2">
+<h2 id="org5274dbc"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 In both my professional and private projects, I use Microchip's PIC microprocessors A LOT. In fact, at the time of writing, I have about 10 different projects on the go at the same time, all of which are using different PICs (mainly PIC16 and PIC24s).
@@ -222,16 +222,16 @@ A couple of things to note:
 </div>
 </div>
 
-<div id="outline-container-orgb939486" class="outline-2">
-<h2 id="orgb939486"><span class="section-number-2">2</span> Getting everything together</h2>
+<div id="outline-container-org69c092b" class="outline-2">
+<h2 id="org69c092b"><span class="section-number-2">2</span> Getting everything together</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 As mentioned above, I'm using Windows 10. I have the same setup working fine on Windows 7. I will probably do some testing on a Linux VM at some point. I have no means of testing things on a Mac machine (please let me know if you're a Mac user and have any experience with a similar setup as I'd be interested to know how things are different / similar).
 </p>
 </div>
 
-<div id="outline-container-org207e931" class="outline-3">
-<h3 id="org207e931"><span class="section-number-3">2.1</span> Path System Variables</h3>
+<div id="outline-container-orgdaaa8c0" class="outline-3">
+<h3 id="orgdaaa8c0"><span class="section-number-3">2.1</span> Path System Variables</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 The PATH system variable will need to be updated to include a couple of MPLAB files.
@@ -253,8 +253,8 @@ Of course, this will massively depend on your system setup.
 </div>
 </div>
 
-<div id="outline-container-orgdb53e89" class="outline-3">
-<h3 id="orgdb53e89"><span class="section-number-3">2.2</span> Installation</h3>
+<div id="outline-container-org7d95507" class="outline-3">
+<h3 id="org7d95507"><span class="section-number-3">2.2</span> Installation</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Despite trying to not use MPLAB, for this setup, you will need to install MPLAB X <a href="https://www.microchip.com/mplab/mplab-x-ide">here</a>. At the time of writing, the latest version is v5.30, but as we aren't using much of MPLAB, the instructions below should work on most versions (I'll update the instructions if I find anything breaks).
@@ -276,16 +276,16 @@ Once you're all set up, open up MPLAB X and create your project as you would for
 </div>
 
 
-<div id="outline-container-orgcd381ef" class="outline-2">
-<h2 id="orgcd381ef"><span class="section-number-2">3</span> Adding new files</h2>
+<div id="outline-container-orgbb32b35" class="outline-2">
+<h2 id="orgbb32b35"><span class="section-number-2">3</span> Adding new files</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 When adding new files to an PIC project, you can either use the MPLAB IDE or you can add them manually by editing nbproject/configurations.xml . Both work well, depending on your needs.
 </p>
 </div>
 
-<div id="outline-container-orgd624375" class="outline-3">
-<h3 id="orgd624375"><span class="section-number-3">3.1</span> Adding files by MPLAB X IDE</h3>
+<div id="outline-container-orgf40bdfc" class="outline-3">
+<h3 id="orgf40bdfc"><span class="section-number-3">3.1</span> Adding files by MPLAB X IDE</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 When setting up a new project with MPLAB, I will often use the IDE to create the main.c file. The reasons I do this are:
@@ -305,8 +305,8 @@ After I've done the above, I will often close the IDE and start working on the c
 </div>
 </div>
 
-<div id="outline-container-orgef686a6" class="outline-3">
-<h3 id="orgef686a6"><span class="section-number-3">3.2</span> Adding files without the IDE</h3>
+<div id="outline-container-orgfeb28f6" class="outline-3">
+<h3 id="orgfeb28f6"><span class="section-number-3">3.2</span> Adding files without the IDE</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 It is possible to add files to the project without using the IDE. All the information we need is contained with the file nbproject\configurations.xml
@@ -386,8 +386,8 @@ If the generator was successful, you can then call <code>make</code> in the proj
 </div>
 
 
-<div id="outline-container-orgea7118d" class="outline-2">
-<h2 id="orgea7118d"><span class="section-number-2">4</span> Compiling the firmware</h2>
+<div id="outline-container-org1e51b14" class="outline-2">
+<h2 id="org1e51b14"><span class="section-number-2">4</span> Compiling the firmware</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Once you have the files added to your project and the new Makefile, compiling the software is pretty simple by typing <code>make</code> from within the project home folder. 
@@ -403,8 +403,8 @@ Typing in <code>make</code> and pressing return, you should have the same output
 </div>
 </div>
 
-<div id="outline-container-orgdaae6e6" class="outline-2">
-<h2 id="orgdaae6e6"><span class="section-number-2">5</span> Flashing the firmware</h2>
+<div id="outline-container-org9c3b0d0" class="outline-2">
+<h2 id="org9c3b0d0"><span class="section-number-2">5</span> Flashing the firmware</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 This one is a bit more difficult, as it depends on what you're using to flash the device, and what device you are flashing.
@@ -451,8 +451,8 @@ As I am very likely to make a mistake with the above command line, I'll normally
 </div>
 </div>
 
-<div id="outline-container-orgd4311ef" class="outline-2">
-<h2 id="orgd4311ef"><span class="section-number-2">6</span> Wrapping it up</h2>
+<div id="outline-container-orgc6e7ee3" class="outline-2">
+<h2 id="orgc6e7ee3"><span class="section-number-2">6</span> Wrapping it up</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Following the above should give you a minimum setup needed to develop PIC24 devices using the command line. I use this setup daily, but with a few additions for unit testing and for my Vim interaction's (both of which I'll discuss another time).

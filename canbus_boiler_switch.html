@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+  <title>Canbus boiler switch</title>
+
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta name="generator" content="Pelican" />
+<link href="https://sdaglish.github.io/canbus_boiler_switch.html" rel="canonical" />
+  <!-- Feed -->
+        <link href="https://sdaglish.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Embedded Electronics Blog Full Atom Feed" />
+          <link href="https://sdaglish.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="My Embedded Electronics Blog Categories Atom Feed" />
+
+  <link href="https://sdaglish.github.io/theme/css/style.css" type="text/css" rel="stylesheet" />
+
+  <!-- Code highlight color scheme -->
+      <link href="https://sdaglish.github.io/theme/css/code_blocks/github.css" rel="stylesheet">
+
+
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+
+    <meta name="description" content="A post on my Canbus based boiler switch">
+
+    <meta name="author" content="Steven Daglish">
+
+    <meta name="tags" content="canbus">
+    <meta name="tags" content="home_automation">
+    <meta name="tags" content="pic24">
+    <meta name="tags" content="home_assistant">
+
+
+
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="My Embedded Electronics Blog"/>
+<meta property="og:title" content="Canbus boiler switch"/>
+<meta property="og:description" content="A post on my Canbus based boiler switch"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://sdaglish.github.io/canbus_boiler_switch.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2020-02-23 00:00:00+00:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://sdaglish.github.io/author/steven-daglish.html">
+<meta property="article:section" content="misc"/>
+<meta property="article:tag" content="canbus"/>
+<meta property="article:tag" content="home_automation"/>
+<meta property="article:tag" content="pic24"/>
+<meta property="article:tag" content="home_assistant"/>
+<meta property="og:image" content="https://sdaglish.github.io/theme/images/post-bg.jpg">
+
+<!-- Twitter Card -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "name": "Canbus boiler switch",
+  "headline": "Canbus boiler switch",
+  "datePublished": "2020-02-23 00:00:00+00:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Steven Daglish",
+    "url": "https://sdaglish.github.io/author/steven-daglish.html"
+  },
+  "image": "https://sdaglish.github.io/theme/images/post-bg.jpg",
+  "url": "https://sdaglish.github.io/canbus_boiler_switch.html",
+  "description": "A post on my Canbus based boiler switch"
+}
+</script>
+</head>
+<!-- TODO : Body class -->
+<body class="home-template">
+
+<nav id="menu">
+  <a class="close-button">Close</a>
+  <div class="nav-wrapper">
+    <p class="nav-label">Menu</p>
+    <ul>
+
+
+    </ul>
+  </div>
+</nav>
+    <!-- Progressbar -->
+    <div class="progress-container">
+        <span class="progress-bar"></span>
+    </div>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="post-header" >
+      <div class="inner">
+        <nav id="navigation">
+            <span id="home-button" class="nav-button">
+                <a class="home-button" href="https://sdaglish.github.io/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+            </span>
+          <span id="menu-button" class="nav-button">
+            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+          </span>
+        </nav>
+        <h1 class="post-title">Canbus boiler switch</h1>
+        <!-- TODO : Proper class for headline -->
+        <span class="post-meta">
+                <a href="https://sdaglish.github.io/author/steven-daglish.html">Steven Daglish</a>
+            | <time datetime="Sun 23 February 2020">Sun 23 February 2020</time>
+        </span>
+        <!-- TODO : Modified check -->
+      </div>
+    </header>
+
+  <section id="wrapper">
+    <a class="hidden-close"></a>
+
+    <!-- Post content -->
+    <main class="content" role="main">
+        <article class="post">
+        <div class="inner">
+            <section class="post-content">
+                <div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org434c815">1. Summary</a></li>
+<li><a href="#orgd421804">2. Wired or wireless</a></li>
+<li><a href="#org93d512f">3. Canbus network</a>
+<ul>
+<li><a href="#orgd299abf">3.1. Transceiver</a></li>
+<li><a href="#org1a57a7b">3.2. Controller</a></li>
+</ul>
+</li>
+<li><a href="#org6d84629">4. Micro-controller</a></li>
+<li><a href="#org56e4d1b">5. Schematic and PCB</a></li>
+<li><a href="#org30c2938">6. PIC Program</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org434c815" class="outline-2">
+<h2 id="org434c815"><span class="section-number-2">1</span> Summary</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+For my home automation system, one of the main systems is by combing-boiler controller. At the moment, the system simply switches the boiler on or off, but in the near future, I hope to implement the boiler's OpenTherm system, so that I can have finer grain control over the system (such as the temperature of the temperature of the water going into the radiator system).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd421804" class="outline-2">
+<h2 id="orgd421804"><span class="section-number-2">2</span> Wired or wireless</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+In the past, I have experimented with wireless systems, such as wifi (using esp32), 433MHz, and 2.4GHz. However, for various reasons, I have decided that most of my new home automation system will be hardwired.
+</p>
+
+<p>
+Even then, I've looked into a variety of communications systems including:
+</p>
+
+<ul class="org-ul">
+<li>Ethernet: Would work well, but not too easy to implement, is quite a power hog, and would need a central hub, with an Ethernet cable for each node.</li>
+<li>Mobdus: I initially did quite a bit of work getting modbus to work, but found it to be an issue when I needed data quickly. Being a master-slave setup, I would need to poll the data which also cause the system to slow down when many nodes were added.</li>
+<li>Linbus: Would suffer for same issues as modbus.</li>
+<li>Canbus: Fast, multi-master, bus based network, so I could daisy-chain nodes.</li>
+</ul>
+
+<p>
+In the end, I decided to go with Canbus. As well as the reasons above, I also develop Canbus based systems at work, so this seemed like quite a good fit for me.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org93d512f" class="outline-2">
+<h2 id="org93d512f"><span class="section-number-2">3</span> Canbus network</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgd299abf" class="outline-3">
+<h3 id="orgd299abf"><span class="section-number-3">3.1</span> Transceiver</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+For my system, I'm using the Microchip MCP2551 High-speed CAN Transceiver (link <a href="https://www.microchip.com/wwwproducts/en/en010405">here</a>). It's pretty cheap (about £0.70 per chip), easy to work with, and so far, works pretty well. There are probably cheaper transceivers out there, but for now I'll keep to this one as it's worked for me without any issues.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1a57a7b" class="outline-3">
+<h3 id="org1a57a7b"><span class="section-number-3">3.2</span> Controller</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Reading through the Canbus specifications, it would be perfectly possible to create my own Canbus driver. Alternatively, I could find a micro-controller that has a Canbus driver built in. However, I mainly program with PIC micro-controller, and there aren't any PIC24 or PIC16 ICs that have a built in Canbus module. Instead, I decided to be a bit lazy and use an external Canbus controller, the
+<a href="https://www.microchip.com/wwwproducts/en/en010406">MCP2515 Stand-Alone CAN Controller with SPI Interface</a>. This controller sets up all of the timers, collision monitoring, and framing needed to send data over a Canbus network at upto 1Mb/s (presuming the hardware is setup correctly). Being SPI, it's easy to talk to (my home system uses the PIC24 built-in SPI module, and a system I'm developing at work uses bit-banging to communicate via a GPIO pin). It also works well with the MCP2551 transceiver above, making the circuit design nice and easy. There are also interrupt pins for indicating that data has arrived, which allows me to put the PIC into sleep to try and conserve power (though I have yet to implement anything like that yet).
+</p>
+
+<p>
+The circuit for this is pretty simple and is shown below (the full KiCad schematic will be provided in a Github link further below).
+</p>
+
+
+
+<div class="figure">
+<p><img src="./images/canbus_circuit_23Feb2020.jpg" alt="canbus_circuit_23Feb2020.jpg" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Canbus controller and transceiver circuit</p>
+</div>
+
+<p>
+I'm not currently using all of the interrupt pins, instead using the SPI commands. The ones that I am using are INT and RX0BF. I will add the other interrupts at some point, so I have added them for that later use.
+</p>
+
+<p>
+For connections, I'm using RJ12 connections. These are cheap, easy enough to hand-crimp, and twisted-pair 6 core cable is easy enough to come by. I could have gotten away with using 4 cores (2 for power and 2 for signals), but doubling-up on the power connections gives that little bit less resistance.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6d84629" class="outline-2">
+<h2 id="org6d84629"><span class="section-number-2">4</span> Micro-controller</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+For all of my non-touchscreen projects, I use Microchip's PIC16 or PIC24 ICs. These are what I know and for the most part I do like working with them. I'm able to setup a good development environment that allows me to use the command line for most of my work (see <a href="https://sdaglish.github.io/developing_pic24_projects_using_the_command_line.html">Developing PIC24 Projects using the Command Line</a>), a can set up unit testing using Ceedling, and I can use Vim and YouCompleteMe to edit my code. So far it works quite well and I haven't found much of a reason to move to a different ecosystem (expect when developing touchscreen projects, in which case I do use a couple of STM32 devices instead, as TouchGFX is a really good system!).
+</p>
+
+<p>
+For this system, I'm using a PIC24FJ256GA702. This gives me plenty of room for expansion, can probably be used in most of my HA systems, and comes in a number of different package types for different parts of prototyping.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org56e4d1b" class="outline-2">
+<h2 id="org56e4d1b"><span class="section-number-2">5</span> Schematic and PCB</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+The board is designed so that it connects to an external relay / SSR board so that it doesn't have to switch over AC voltages. This is mainly for safety, but also to give me more options for adding different things. Header pins an junction J4 are used to connect power, gnd, and switching signals. By changing the PIC code, it could also be used to connect external sensors, other switching circuits, or communicating with many other devices.
+</p>
+
+<p>
+For my setup, I'm using a cheap relay circuit that I bought via Aliexpress. Any should do, just make sure that it's rated for whatever you're switching. At the moment, I'm connected to the relay board via a few jumper connections, but I intend on changing those soon.
+</p>
+
+<p>
+The KiCad project can be found <a href="https://github.com/sdaglish/canbus_boiler_switch_kicad_project">here</a>. At the time of writing, the version in master is v1.1. This contains schematic and pcb design that was used to create the first prototype board, which can be seen below (I do like KiCads 3D rendering).
+</p>
+
+
+<div class="figure">
+<p><img src="./images/canbus_boiler_switch_pcb_24Feb20.jpg" alt="canbus_boiler_switch_pcb_24Feb20.jpg" />
+</p>
+<p><span class="figure-number">Figure 2: </span>3D rendering of PCB</p>
+</div>
+
+<p>
+There are a number of mistakes in the schematic design that will get fixed in the next version:
+</p>
+
+<ul class="org-ul">
+<li>C5 needs to be removed, or replaced with a 0R resistor
+<ul class="org-ul">
+<li>This was added by mistake and was not picked up until after the boards were sent for manufacturing</li>
+<li>The capacitor is stopping the PIC from being resetted when the tact button, SW1 is pressed</li>
+</ul></li>
+<li>The SCK and INT pins were connected to the PGD and PGC pic programming pins.
+<ul class="org-ul">
+<li>While I thought this was working fine in the initial breadboard testing, it was actually stopping the PIC from being programmed.</li>
+<li>I'm not sure how I missed that one during initial testing.</li>
+</ul></li>
+</ul>
+
+<p>
+In the end, the mistakes above were easy enough to fix with a couple of jumper wires as shown below.
+</p>
+
+
+<div class="figure">
+<p><img src="./images/canbus_boiler_switch_finished_pcb_25Feb20.jpg" alt="canbus_boiler_switch_finished_pcb_25Feb20.jpg" />
+</p>
+<p><span class="figure-number">Figure 3: </span>Finished PCB with fixes to SCK and INT pins</p>
+</div>
+
+<p>
+Since I'm going to redesign the pcb soon, I haven't put a lot of thought into the 3D printed case. I'm also going to use a different relay board. The current one has two relays, which was useful when my boiler was both a radiator and an immersion boiler in one, both of which could be switched off / on separately. However, since I now have a combi-boiler, I only need a single switch.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org30c2938" class="outline-2">
+<h2 id="org30c2938"><span class="section-number-2">6</span> PIC Program</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+The PIC program needs quite a bit of work, which I will start doing soon. Therefore I'm going to leave out the code here and add it to a later post. I need to update the canbus<sub>controller</sub> module so that it can be used with all my different systems, and at the moment, that isn't working correctly.
+</p>
+</div>
+</div>
+
+			<style>
+#pcs-comment-form input,
+#pcs-comment-form textarea {
+	width: 100%;
+}
+#pcs-comment-form-display-replyto {
+	border: solid 1px black;
+	padding: 2px;
+}
+#pcs-comment-form-display-replyto p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+#pcs-comments ul {
+	list-style: none;
+}
+#pcs-comments .comment-left {
+	display: table-cell;
+	padding-right: 10px;
+}
+#pcs-comments .comment-body {
+	display: table-cell;
+	vertical-align: top;
+	width: 100%;
+}
+</style>
+
+	<section id="pcs-comments">
+	<header>
+		<h2>Comments</h2>
+		<hr/>
+	</header>
+		<p>There are no comments yet.</p>
+	<section>
+	<form id="pcs-comment-form" action="#">
+		<legend>Add a Comment</legend>
+		<input type="hidden" id="pcs-comment-form-input-replyto">
+		<fieldset>
+			<label for="pcs-comment-form-input-name">Name</label>
+			<input  id="pcs-comment-form-input-name" type="text" placeholder="Enter your name or nickname" />
+		</fieldset>
+		<fieldset>
+			<label for="pcs-comment-form-input-website">Website</label>
+			<input  id="pcs-comment-form-input-website" type="text" placeholder="Enter your website (optional)" />
+		</fieldset>
+		<fieldset>
+			<label   for="pcs-comment-form-input-textarea">Your Comment</label>
+			<textarea id="pcs-comment-form-input-textarea" rows="5" style="resize:vertical;" placeholder="Your comment"></textarea>
+			<p>You can use the <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> syntax to format your comment.</p>
+			<div style="display: none; " id="pcs-comment-form-display-replyto"></div>
+		</fieldset>
+
+		<button type="submit"
+				id="pcs-comment-form-button-submit"
+				>Post via email</button>
+
+			<a href="https://sdaglish.github.io/feeds/comment.canbus_boiler_switch.atom.xml">
+				Comment Atom Feed
+			</a>
+	</form>
+</section>
+
+</section>
+
+			<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="https://sdaglish.github.io/theme/js/comments.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			CommentSystem.email_user   = "s.c.daglish";
+			CommentSystem.email_domain = "gmail.com";
+			CommentSystem.display_replyto_html = function(comment_content, article_slug, author) { 
+				return ''
+					+ '<button style="float:right;" onclick="CommentSystem.cancelReply(); return false;" title="Cancel the reply">'
+					+ 	'×'
+					+ '</button>'
+					+ '<p>This comment will be posted as a reply to \'<a title="'+comment_content+'" href="#comment-'+article_slug+'">'+author+'</a>\'</p>';
+			};
+
+			$('#pcs-comment-form').on("submit",
+				function( event )
+				{
+					event.preventDefault();
+					$(location).attr('href', CommentSystem.getMailtoLink("canbus_boiler_switch"));
+				}
+			);
+		});
+	</script>
+
+
+            </section>
+
+            <section class="post-info">
+                <div class="post-share">
+                    <a class="twitter" href="https://twitter.com/share?text=Canbus boiler switch&amp;url=https://sdaglish.github.io/canbus_boiler_switch.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+                    </a>
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://sdaglish.github.io/canbus_boiler_switch.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+                    </a>
+                    <a class="googleplus" href="https://plus.google.com/share?url=https://sdaglish.github.io/canbus_boiler_switch.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
+                    </a>
+                    <div class="clear"></div>
+                </div>
+
+                <aside class="post-tags">
+<a href="https://sdaglish.github.io/tag/canbus.html">canbus</a><a href="https://sdaglish.github.io/tag/home_automation.html">home_automation</a><a href="https://sdaglish.github.io/tag/pic24.html">pic24</a><a href="https://sdaglish.github.io/tag/home_assistant.html">home_assistant</a>                </aside>
+
+                <div class="clear"></div>
+
+
+                </section>
+
+
+                <aside class="post-nav">
+                    <div class="clear"></div>
+                </aside>
+
+            </div>
+        </article>
+    </main>
+      <!-- TODO : Body class -->
+    <div id="body-class" style="display: none;" class=""></div>
+
+    <footer id="footer">
+      <div class="inner">
+        <section class="credits">
+
+
+          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>
+          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>
+        </section>
+      </div>
+    </footer>
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://sdaglish.github.io/theme/js/script.js"></script>
+
+</body>
+</html>
