@@ -23,8 +23,8 @@ title: My DIY Electronic Projects
 description: >- # this means to ignore newlines until "baseurl:"
   A place to collect my home electronics and embedded projects.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "sdaglish.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-#twitter_username: jekyllrb
+url: "https://sdaglish.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: SDaglish1
 github_username:  sdaglish
 
 # Build settings
