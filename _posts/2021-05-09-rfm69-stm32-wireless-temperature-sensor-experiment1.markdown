@@ -21,7 +21,6 @@ For the actual temperature sensing, I'm using the MCP9808 I2C sensor. I've used 
 
 The schematic for this is pretty simple, as can be seen below.
 
-{% pdf "./documents/schematic-9May21.pdf" %}
 
 For flashing and debugging, I'm using the Segger Edu Mini rather than an ST-Link V2. This allows me to use Segger's OZone debugging software, which I've used a number of times now and find it to be much better than debugging using the STM32CubeIDE. I'm in the process of learning GDB, so maybe I won't need that in the future, but for now I quite like the setup.
 
@@ -74,4 +73,4 @@ One thing that I have noticed is that there seem to be quite a few packets being
 
 I've also noticed that the RSSI is higher than the target RSSI, but the signal power level isn't 0. I'm going to look into that and see what's going on there.
 
-I'm also slowely starting to get the hardware designed, but I'm going to put off designing the hardware as I'm sure I'll need to change the hardware when I look into low-power modes. So for now, I'll just keep to the wire-wrap board and adjust that as needed.
+I'm also slowly starting to get the hardware designed, but I'm going to put off designing the hardware as I'm sure I'll need to change the hardware when I look into low-power modes. So for now, I'll just keep to the wire-wrap board and adjust that as needed.
