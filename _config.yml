@@ -21,7 +21,7 @@
 title: My DIY Electronics Projects
 email: s.c.daglish@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
- A place to collect my houme electronics and embedded projects.
+ A place to collect my home electronics and embedded projects.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: sdaglish1
