@@ -21,7 +21,7 @@ For the actual temperature sensing, I'm using the MCP9808 I2C sensor. I've used 
 
 The schematic for this is pretty simple, as can be seen below.
 
-{% pdf "./documents/schematic-9May21.pdf" %}
+[Schematic.pdf](documents/schematic-9May21.pdf)
 
 For flashing and debugging, I'm using the Segger Edu Mini rather than an ST-Link V2. This allows me to use Segger's OZone debugging software, which I've used a number of times now and find it to be much better than debugging using the STM32CubeIDE. I'm in the process of learning GDB, so maybe I won't need that in the future, but for now I quite like the setup.
 
