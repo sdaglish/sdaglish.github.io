@@ -1,0 +1,97 @@
+---
+layout: default
+title: "RFM69 Temperature Sensor Node: Experiment 2"
+---
+
+# Introduction
+
+	In the last experiment, I mentioned that it looks like I'm getting quite a few packets lost. In this experiment, I'm going t olook into this further and see if I can get to the bottom of it, and hopefully reduce the amount of packets being lost.
+	
+For this, I'm going to update the sensing node so that it sends the amount of packets that were lost on each attempt. The gateway node will then print out this information so that we can get some kind of idea of the amount of packets that are actually being lost (the first colunm is the packets lost in the previous tranmsission attempt).
+
+0 21.375 7 from 10 RSSI:-74
+0 21.250 6 from 10 RSSI:-76
+0 21.250 5 from 10 RSSI:-75
+1 21.250 5 from 10 RSSI:-74
+2 21.375 6 from 10 RSSI:-74
+1 21.250 6 from 10 RSSI:-75
+0 21.250 5 from 10 RSSI:-74
+0 21.250 4 from 10 RSSI:-73
+0 21.375 3 from 10 RSSI:-74
+2 21.375 4 from 10 RSSI:-75
+1 21.375 4 from 10 RSSI:-74
+1 21.250 4 from 10 RSSI:-75
+0 21.375 3 from 10 RSSI:-75
+2 21.375 4 from 10 RSSI:-74
+0 21.250 3 from 10 RSSI:-77
+0 21.375 2 from 10 RSSI:-74
+3 21.375 4 from 10 RSSI:-74
+0 21.375 3 from 10 RSSI:-75
+1 21.250 3 from 10 RSSI:-74
+1 21.375 3 from 10 RSSI:-74
+5 21.375 7 from 10 RSSI:-74
+0 21.375 6 from 10 RSSI:-72
+0 21.375 5 from 10 RSSI:-74
+0 21.375 4 from 10 RSSI:-74
+0 21.375 3 from 10 RSSI:-77
+0 21.375 2 from 10 RSSI:-77
+2 21.375 3 from 10 RSSI:-75
+1 21.375 3 from 10 RSSI:-75
+4 21.375 6 from 10 RSSI:-72
+0 21.375 5 from 10 RSSI:-74
+
+As can be seen above, there's quite a lot of packets being lost, even though the RSSI is OK. Lets see if I can do any better.
+
+I was looking into packet loss online, and came up with the following forum post about a similar issue [here](https://lowpowerlab.com/forum/moteino/is-packet-loss-common/30/). This involved changing REG_PACKETCONFIG1 from RF_PACKET1_DCFREE_OFF to RF_PACKET1_DCFREE_WHITENING.
+
+As can be seen below, this is much better, though still not perfect, so lets see what else we can do.
+
+0 21.500 0 from 10 RSSI:-75
+1 21.500 0 from 10 RSSI:-75
+1 21.500 0 from 10 RSSI:-75
+0 21.500 0 from 10 RSSI:-74
+2 21.500 1 from 10 RSSI:-75
+0 21.500 0 from 10 RSSI:-74
+2 21.500 1 from 10 RSSI:-75
+0 21.500 0 from 10 RSSI:-75
+1 21.375 0 from 10 RSSI:-74
+1 21.500 0 from 10 RSSI:-74
+1 21.500 0 from 10 RSSI:-75
+0 21.500 0 from 10 RSSI:-74
+1 21.500 0 from 10 RSSI:-75
+0 21.500 0 from 10 RSSI:-77
+1 21.500 0 from 10 RSSI:-75
+0 21.375 0 from 10 RSSI:-75
+1 21.375 0 from 10 RSSI:-78
+0 21.500 0 from 10 RSSI:-75
+0 21.375 0 from 10 RSSI:-77
+0 21.500 0 from 10 RSSI:-75
+1 21.375 0 from 10 RSSI:-75
+1 21.375 0 from 10 RSSI:-74
+0 21.500 0 from 10 RSSI:-75
+1 21.375 0 from 10 RSSI:-77
+0 21.375 0 from 10 RSSI:-74
+0 21.375 0 from 10 RSSI:-74
+1 21.375 0 from 10 RSSI:-75
+1 21.375 0 from 10 RSSI:-73
+1 21.375 0 from 10 RSSI:-74
+0 21.375 0 from 10 RSSI:-76
+
+In fact, when I expand on the code, and calculate the packet loss, it's actually pretty bad. As can be seen below, I'm actually getting a packet loss of about 35%, which is much higher than I actually thought!
+
+1 21.375 0 from 10 RSSI:-76. Loss percentage 35.8024691358
+
+## Changing the required min RSSI. This is currently set to -80. If I change this to -70, what do I get?
+
+0 21.750 2 from 10 RSSI:-69. Loss percentage 4.35953955425
+
+## Changing bitrate to 1200
+
+0 22.250 0 from 10 RSSI:-76. Loss percentage 1.246753246│···········································································
+75
+
+And then RSSI min to 60
+
+## Calibration
+
+Implemented, does it do much?
